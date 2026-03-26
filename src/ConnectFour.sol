@@ -5,7 +5,13 @@ contract ConnectFour {
     uint8 constant ROWS = 6;
     uint8 constant COLS = 7;
 
-    enum Status { Waiting, Active, Draw, WonPlayer1, WonPlayer2 }
+    enum Status {
+        Waiting,
+        Active,
+        Draw,
+        WonPlayer1,
+        WonPlayer2
+    }
 
     struct Game {
         address player1;
@@ -90,14 +96,11 @@ contract ConnectFour {
         return false;
     }
 
-    function _countDirection(
-        Game storage g,
-        uint8 col,
-        uint8 row,
-        int8 dCol,
-        int8 dRow,
-        uint8 player
-    ) internal view returns (uint8 count) {
+    function _countDirection(Game storage g, uint8 col, uint8 row, int8 dCol, int8 dRow, uint8 player)
+        internal
+        view
+        returns (uint8 count)
+    {
         for (uint8 i = 1; i < 4; i++) {
             int8 c = int8(col) + dCol * int8(i);
             int8 r = int8(row) + dRow * int8(i);
